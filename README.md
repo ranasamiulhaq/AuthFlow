@@ -1,15 +1,131 @@
-AuthFlow: MERN Stack Authentication SystemProject DescriptionThis project is a robust, full-stack authentication system built using the MERN stack (MongoDB, Express.js, React, Node.js). The frontend is powered by Vite for a fast and efficient development experience. It provides a complete solution for user authentication, including secure password handling, token-based sessions, and third-party login with Google.FeaturesUser Registration & Login: Secure user creation and authentication with email and password.Form Validation: Client-side validation to ensure data integrity and a smooth user experience.Secure Sessions: Utilizes JSON Web Tokens (JWT) for secure, stateless sessions.Cookie-Based Tokens: JWTs are stored in HTTP-only cookies to protect against Cross-Site Scripting (XSS) attacks.Protected Routes: Middleware to restrict access to certain routes, ensuring only authenticated users can view private content.Redirects: Users are automatically redirected to the login page if they are unauthenticated and attempt to access a protected route.Google OAuth 2.0: Seamless third-party authentication using Google Sign-In.Password Hashing: User passwords are encrypted using bcrypt for maximum security.Technologies UsedFrontend (Client):React: A JavaScript library for building user interfaces.Vite: A build tool that provides a lightning-fast development server and optimized build process.React Router DOM: For handling client-side routing and protected routes.Axios: A promise-based HTTP client for making API requests.Backend (Server):Node.js: A JavaScript runtime environment.Express.js: A fast, unopinionated, minimalist web framework for Node.js.MongoDB: A NoSQL database for storing user data.Mongoose: An object data modeling (ODM) library for MongoDB and Node.js.JSON Web Token (JWT): For creating and verifying secure tokens.bcryptjs: For hashing and salting passwords.cookie-parser: Middleware for parsing cookies attached to the client request.dotenv: To load environment variables from a .env file.Google OAuth2 Library: For handling Google authentication.Getting StartedPrerequisitesNode.js (v14 or higher)MongoDB (running locally or a cloud service like MongoDB Atlas)InstallationClone the repository:git clone https://github.com/your-username/your-repo-name.git
+# AuthFlow: MERN Stack Authentication System
+
+## 📝 Project Description
+AuthFlow is a robust, full-stack authentication system built using the **MERN stack** (MongoDB, Express.js, React, Node.js).  
+The frontend is powered by **Vite** for a fast and efficient development experience.  
+
+It provides a complete solution for user authentication, including:
+- Secure password handling  
+- Token-based sessions  
+- Third-party login with Google  
+
+---
+
+## ✨ Features
+- **User Registration & Login** – Secure authentication with email & password  
+- **Form Validation** – Client-side validation for data integrity and smooth UX  
+- **Secure Sessions** – Stateless authentication with JSON Web Tokens (JWT)  
+- **Cookie-Based Tokens** – HTTP-only cookies to prevent XSS attacks  
+- **Protected Routes** – Middleware to restrict access to private routes  
+- **Redirects** – Auto-redirect unauthenticated users to login  
+- **Google OAuth 2.0** – Seamless Google Sign-In integration  
+- **Password Hashing** – Encrypted with bcrypt for maximum security  
+
+---
+
+## 🚀 Technologies Used
+
+### Frontend (Client)
+- **React** – For building UI  
+- **Vite** – Lightning-fast dev server & optimized builds  
+- **React Router DOM** – Client-side routing & protected routes  
+- **Axios** – For making API requests  
+
+### Backend (Server)
+- **Node.js** – JavaScript runtime  
+- **Express.js** – Minimalist backend framework  
+- **MongoDB** – NoSQL database for user data  
+- **Mongoose** – ODM for MongoDB  
+- **JSON Web Token (JWT)** – Secure token-based sessions  
+- **bcryptjs** – Password hashing & salting  
+- **cookie-parser** – Parse cookies in requests  
+- **dotenv** – Environment variable management  
+- **Google OAuth2 Library** – Google authentication support  
+
+---
+
+## 💻 Getting Started
+
+### Prerequisites
+- **Node.js** (v14 or higher)  
+- **MongoDB** (local or cloud via MongoDB Atlas)  
+
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/your-username/your-repo-name.git
 cd your-repo-name
-Install backend dependencies:cd backend
+
+# Install backend dependencies
+cd backend
 npm install
-Install frontend dependencies:cd ../frontend
+
+# Install frontend dependencies
+cd ../frontend
 npm install
-Environment VariablesCreate a .env file in the backend directory with the following variables:MONGO_URI=your_mongodb_connection_string
+
+## ⚙️ Environment Variables
+
+Create a `.env` file inside the **backend** directory:
+
+```env
+MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=a_very_secure_random_string
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
-MONGO_URI: Your MongoDB connection string.JWT_SECRET: A long, random string used to sign your JWTs.GOOGLE_CLIENT_ID & GOOGLE_CLIENT_SECRET: Get these from the Google Cloud Console by setting up a new OAuth 2.0 client ID for a web application.Running the ApplicationStart the backend server:cd backend
-npm start
-Start the frontend development server:cd ../frontend
+
+MONGO_URI → Your MongoDB connection string
+JWT_SECRET → Long, random string to sign JWTs
+GOOGLE_CLIENT_ID & GOOGLE_CLIENT_SECRET → Obtained from Google Cloud Console (OAuth 2.0 credentials)
+
+## ▶️ Running the Application
+
+```bash
+# Start backend server
+cd backend
 npm run dev
-The application will be accessible at http://localhost:5173.Authentication DetailsUser Validation & RedirectsFrontend: The React components use state management to track the user's authentication status. Forms include client-side validation to ensure fields are filled out correctly before submission.Backend: Express.js routes have validation middleware to sanitize and validate incoming data before processing.Redirects:Upon successful login, the user is redirected to a protected dashboard or home page.If an unauthenticated user attempts to access a protected route, the middleware intercepts the request and sends a 401 Unauthorized status, triggering a client-side redirect to the login page.Tokens and CookiesJWT Generation: When a user logs in successfully, the backend generates a JWT containing the user's ID.Cookie Storage: The JWT is sent to the client and stored in an HTTP-only cookie. This type of cookie is not accessible via JavaScript, mitigating the risk of XSS attacks. The cookie is also configured with the secure flag in production to ensure it's only sent over HTTPS.Token Verification: For every subsequent request to a protected route, the server checks for the presence of the JWT in the cookie. It then verifies the token's signature using the JWT_SECRET. If the token is valid, the user's ID is attached to the request object, allowing access to the protected route.Google LoginThe application uses the Google OAuth 2.0 flow.The frontend sends the Google ID token to the backend.The backend verifies the ID token with Google's API to ensure its authenticity.Once verified, the backend either finds an existing user or creates a new one based on the Google profile data.A standard JWT is then generated for the user and stored in a cookie, just like a regular email/password login, providing a consistent authentication experience.ContributingContributions are welcome! Please open an issue or submit a pull request.LicenseThis project is licensed under the MIT License.
+
+# Start frontend server
+cd ../frontend
+npm run dev
+
+The app will run at: http://localhost:5173
+
+## 🔒 Authentication Details
+
+### User Validation & Redirects
+- **Frontend**: React state management tracks authentication status  
+- **Backend**: Middleware validates & sanitizes incoming data  
+- **Redirects**:  
+  - ✅ **Successful login** → Redirects user to **dashboard/home**  
+  - ❌ **Unauthenticated** → Returns `401 Unauthorized` → Redirect to login  
+
+---
+
+### Tokens & Cookies
+- **JWT Generation** – Issued on successful login, contains user ID  
+- **Cookie Storage** – Stored in **HTTP-only cookies** (not accessible via JS)  
+- **Token Verification** – Every protected request checks & validates JWT  
+
+---
+
+### Google Login Flow
+1. **Frontend** gets Google ID token  
+2. **Backend** verifies token with Google API  
+3. If valid → Finds/creates user → Issues **standard JWT**  
+4. JWT stored in cookie → Same behavior as email/password login  
+
+---
+
+## 🤝 Contributing
+Contributions are welcome! 🎉  
+
+- Open an issue  
+- Submit a pull request  
+
+---
+
+## 📄 License
+This project is licensed under the **MIT License**.  
+
+
