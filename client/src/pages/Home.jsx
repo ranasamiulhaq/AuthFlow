@@ -7,13 +7,13 @@ const Home = () => {
     const [message, setMessage] = useState("Auth Successful / Logged In");
     const [showModal, setShowModal] = useState(false);
 
-    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 
     useEffect(() => {
         const verifyUser = async () => {
             try {
                 const res = await axios.post(
-                    `${BACKEND_URL}/userVerification`,
+                    `${BACKEND_URL}/auth/userVerification`,
                     {},
                     { withCredentials: true }
                 );
@@ -32,7 +32,7 @@ const Home = () => {
 
     const handleLogout = async () => {
         try {
-            await axios.post(`${BACKEND_URL}/logout`, {}, { withCredentials: true });
+            await axios.post(`${BACKEND_URL}/auth/logout`, {}, { withCredentials: true });
             setMessage("You have been logged out successfully.");
             setShowModal(true);
             setTimeout(() => {

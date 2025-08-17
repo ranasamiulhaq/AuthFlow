@@ -29,7 +29,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Routes
-app.use("/",authRoutes);
+app.use("/auth",authRoutes);
+
 
 // Start Server
 const PORT = process.env.PORT || 5050;

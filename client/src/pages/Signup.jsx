@@ -28,13 +28,13 @@ const Signup = () => {
         const verifyToken = async () => {
             try {
                 const res = await axios.post(
-                    `${BACKEND_URL}/userVerification`, 
+                    `${BACKEND_URL}/auth/userVerification`, 
                     {}, 
                     { withCredentials: true }
                 );
 
                 if (res.data.status) {
-                    navigate('/home');
+                    navigate('/');
                 }
             } catch (error) {
                 console.error("Verification error:", error);
@@ -98,7 +98,7 @@ const Signup = () => {
         }
 
         try {
-            const res = await axios.post(`${BACKEND_URL}/signup`,
+            const res = await axios.post(`${BACKEND_URL}/auth/signup`,
                 formData,
                 { withCredentials: true }
             );

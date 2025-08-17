@@ -7,23 +7,21 @@ const Login = () => {
     const [formData, setFormData] = useState({
         email: "",
         password: ""
-    });
-
+    }); 
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-
     const [errors, setErrors] = useState({ email: "", password: "" });
 
     useEffect(() => {
         const verifyUser = async () => {
             try {
                 const res = await axios.post(
-                    `${BACKEND_URL}/userVerification`,
+                    `${BACKEND_URL}/auth/userVerification`,
                     {},
                     { withCredentials: true }
                 );
 
                 if (res.data.status) {
-                    navigate("/home"); 
+                    navigate("/"); 
                 }
             } catch (error) {
                 console.error("Verification error:", error);
@@ -47,7 +45,7 @@ const Login = () => {
         setErrors({ email: "", password: "" });
 
         try {
-            const res = await axios.post(`${BACKEND_URL}/login`,
+            const res = await axios.post(`${BACKEND_URL}/auth/login`,
                 formData,
                 { withCredentials: true }
             );
