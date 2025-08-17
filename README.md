@@ -69,13 +69,14 @@ npm install
 Create a `.env` file inside the **backend** directory:
 
 ```env
+PORT = 5050
 MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=a_very_secure_random_string
+TOKEN_KEY=a_very_secure_random_string
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
 
 MONGO_URI → Your MongoDB connection string
-JWT_SECRET → Long, random string to sign JWTs
+TOKEN_KEY → Long, random string to sign JWTs
 GOOGLE_CLIENT_ID & GOOGLE_CLIENT_SECRET → Obtained from Google Cloud Console (OAuth 2.0 credentials)
 
 ## ▶️ Running the Application
